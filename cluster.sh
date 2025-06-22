@@ -1,0 +1,13 @@
+export CHILD_KEY=""
+export CLUSTER_COUNT=8
+export FILE_HOST=""
+export MAIN_PORT=6789
+export MAX_STREAM_CONNECTIONS=4
+export MONGO_HOST=""
+export MONGO_PASSWORD=""
+export MONGO_USER=""
+export PEER_HOST=""
+export PEER_PORT=443
+export SOCKET_HOST=""
+export SOCKET_KEY=""
+node stream-child.js

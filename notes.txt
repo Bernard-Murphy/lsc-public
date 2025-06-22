@@ -1,0 +1,55 @@
+- Streamer emits start-stream event
+- Socket server opens connection with main stream server
+- Main server connects to streamer peer
+- Streamer calls stream server
+- Children connect to stream server
+- Stream server calls Children
+- Stream server sends "clip" packet to client with child peerIDs
+
+
+When main receives connection, direct child to new connector, depth++
+
+On init, look for all open connector-only. 
+- If exist, connect to connector with lowest depth
+- If none, connect to main and broadcast to socket server. 
+- If flagged connector only, pull client from mongo, request client from socket server
+On connection:
+- If depth > 1, if connection >= 2, if last peer depth not depth - 1 signal last peer to redirect, flag new connection as connector-only
+- If flagged as connector-only on init, signal for replacement
+
+First child connects to main, depth 1
+First child fills up, signal for replacement
+Second child connects to main - flagged connector-only, depth 2
+First child connects to second
+Third etc connect to second, given depth 1
+Second child fills up
+nth child connects to main, depth 3
+second child connects to nth
+
+Viewers may only connect to children with depth 1
+
+When viewing:
+* If open client with depth 1, connect to that One
+* Else, find open connectors
+* * If no open connectors, connect to main
+* * Else connect to open connector with lowest depth
+
+* Move mongo operations to child
+* View count pipeline
+Move viewers
+add servers
+remove servers
+
+* Bump during clip 
+* * When new connection, how many peers
+
+* currentRoot = feeds from main
+* New root connects to main
+* * If currentRoot found, Bump
+* * Else, peerToBump = old root
+* * * Once currentRoot connects and processed, processConnection(peerToBump)
+* Pass currentRoot each clip 
+
+
+properly filter/call viewers who are kicked
+update depth when kicked by child
