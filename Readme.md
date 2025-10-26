@@ -2,6 +2,12 @@
 
 - Mechanism explained in notes.txt
 
+Note: This was originally a private repo. Most commits are not public, though I can walk you through them if you are curious.
+
+[Screenshot](https://f.feednana.com/files/6fde7a4bcb514fe1801374f9c230a2a3.png)
+
+[Screenshot](https://f.feednana.com/files/4a54b724934945208e9887bd63f441db.png)
+
 ### Requirements
 
 - MongoDB
